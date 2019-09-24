@@ -16,7 +16,7 @@ class FormBuilderServiceProvider extends ServiceProvider
 
         $this->registerFormHelper();
 
-        $this->royalcms->bindShared('form-builder', function ($royalcms) {
+        $this->royalcms->singleton('form-builder', function ($royalcms) {
 
             return new FormBuilder($royalcms, $royalcms['form-helper']);
         });
@@ -24,7 +24,7 @@ class FormBuilderServiceProvider extends ServiceProvider
 
     protected function registerFormHelper()
     {
-        $this->royalcms->bindShared('form-helper', function ($royalcms) {
+        $this->royalcms->singleton('form-helper', function ($royalcms) {
 
             $configuration = $royalcms['config']->get('form-builder::config');
 
